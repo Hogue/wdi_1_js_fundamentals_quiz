@@ -18,11 +18,18 @@ ullamcorper mauris vitae condimentum volutpat.";
 // Question 1
 // write code to split the above paragraph into an array of words
 // then normalize the words in the array
+// starting with an empty words array, need to pull the paragraph into the empty array
 var words = [];
+//.split — splits the paragraph by elements into the new array
+//
+words = paragraph.split(' ');
 
-/* your code starts here */
+for (var i = 0; i <words.length; i++) {
+  //the "w+ means anything that's not a word character, replace it with nothing and then make the word lowercase (.lowercase)
+  words[i]=words[i].replace(/\W+/).toLowerCase();
 
-/* your code ends here */
+}
+
 
 // Question 1 check
 if (words.length !== 111) {
@@ -35,9 +42,18 @@ if (words.length !== 111) {
 var uniqueWordsAsKeys = {};
 var uniqueWords = [];
 
-/* your code starts here */
+for(i = 0; i<words.length; i++) {
+  //since keys are unique the code on line 47 will avoid duplicates
+  uniqueWordsAsKeys[words[i]]= true;
+ }
 
-/* your code ends here */
+for (var key in uniqueWordsAsKeys) {
+  //need to add new elements into an array — use .push for this
+  uniqueWords.push(key);
+  //this takes all the keys from our associative array and moves them into the new array
+  //it's important to just pull the key, and not the key value by the index, otherwise we would get all the 'true's as well with each key
+}
+
 
 // Question 2 check - begin
 var sortedUniqueWords = [ 'a', 'ac', 'adipiscing', 'aliquam', 'aliquet',
@@ -78,6 +94,15 @@ longAndShort['longest'] = '';
 longAndShort['shortest'] = paragraph;
 
 /* your code starts here */
+for (i = 0; i < uniqueWords.length; i++) {
+  if (uniqueWords[i].length > longAndShort['longest'].length) {
+    longAndShort['longest'] = uniqueWords[i];
+  } // now we have to check for the shortest
+    else if (uniqueWords[i].length < longAndShort['shortest'].length) {
+      longAndShort['shortest'] = uniqueWords[i];
+
+    }
+}
 
 /* your code ends here */
 
